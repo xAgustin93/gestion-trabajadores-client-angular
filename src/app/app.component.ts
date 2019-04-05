@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'gestion-trabajadores-client';
+
+  public identity: any;
+  public token: any;
+  
 }

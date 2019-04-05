@@ -1,0 +1,23 @@
+<form class="mt-3" #registrationForm="ngForm" (ngSubmit)="registration(registrationForm)">
+  <div class="form-group">
+    <label for="registration-name">Nombre</label>
+    <input type="text" class="form-control" id="registration-name" placeholder="Nombre" name="name" [(ngModel)]="employee.name" required>
+  </div>
+  <div class="form-group">
+    <label for="registration-lastname">Apellidos</label>
+    <input type="text" class="form-control" id="registration-lastname" placeholder="Apellidos" name="lastname" [(ngModel)]="employee.lastname" required>
+  </div>
+  <div class="form-group">
+    <label for="registration-email">Email</label>
+    <input type="email" class="form-control" id="login-email" placeholder="Email" name="email" [(ngModel)]="employee.email" required>
+  </div>
+  <div class="form-group">
+    <label for="registration-password">Password</label>
+    <input type="password" class="form-control" id="registration-password" placeholder="Contraseña" name="password" [(ngModel)]="password" required>
+  </div>
+  <div class="form-group">
+    <label for="registration-password-repeat">Password</label>
+    <input type="password" class="form-control" id="registration-password-repeat" placeholder="Repetir contraseña" name="passwordRepeat" [(ngModel)]="passwordRepeat" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Registrase</button>
+</form>

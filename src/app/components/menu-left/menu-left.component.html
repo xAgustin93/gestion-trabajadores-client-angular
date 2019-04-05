@@ -1,0 +1,44 @@
+<nav class="side-navbar">
+    <!-- Sidebar Header-->
+    <div class="sidebar-header d-flex align-items-center">
+      <div class="title">
+        <h1 class="h4">
+          {{identity.name}}
+          {{identity.lastname}}
+        </h1>
+      </div>
+    </div>
+    
+    <span class="heading">Menu</span>
+    <ul class="list-unstyled sidebar-menu">
+        <li routerLinkActive="active">
+          <a [routerLink]="['/']">
+            <i class="fas fa-tachometer-alt"></i> Anuncios
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/configuration-user']">
+            <i class="fas fa-tachometer-alt"></i> Configuracion
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/propuestas']">
+            <i class="fas fa-tachometer-alt"></i> Propuestas
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['/check']">
+            <i class="fas fa-tachometer-alt"></i> Check-In & Check-Out
+          </a>
+        </li>
+    </ul>
+    
+    <span class="heading" *ngIf="identity.role == 'ROLE_ADMIN'">Menu Admin</span>
+    <ul class="list-unstyled sidebar-menu" *ngIf="identity.role == 'ROLE_ADMIN'">
+        <li routerLinkActive="active">
+          <a [routerLink]="['/employees']">
+            <i class="fas fa-tachometer-alt"></i> Empleados
+          </a>
+        </li>
+    </ul>
+  </nav>

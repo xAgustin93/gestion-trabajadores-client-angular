@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+
+      <div class="col-12 text-center pt-4 pb-4">
+        <img class="img-fluid" src="./../../../assets/img/logo.png" />
+      </div>
+
+      <div class="col-6 offset-3 login-registration">
+  
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="registration-tab" data-toggle="tab" href="#registration" role="tab" aria-controls="registration" aria-selected="false">
+              Registro
+            </a>
+          </li>
+        </ul>
+  
+  
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <app-login></app-login>
+          </div>
+          <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
+            <app-registration></app-registration>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,29 @@
+<nav class="navbar ">
+  <div class="container-fluid">
+    <div class="navbar-holder d-flex align-items-center justify-content-between">
+
+      <div class="navbar-header d-none d-sm-inline-block col-6">
+        <a [routerLink]="['/cecoadmin']"  class="navbar-brand ">
+          <div class="brand-text d-none d-lg-inline-block">
+            <img class="img-fluid logo" src="./assets/img/logo.png" alt="Cecotec Innovaciones S.L.">
+          </div>
+        </a>
+      </div>
+
+      <div class="col-4 d-sm-none">
+          <i class="fas fa-bars"></i>
+      </div>
+      
+      <div class="col-4 text-right">
+        <ul class="nav-menu list-unstyled">
+          <li class="nav-item">
+            <a (click)="logout()" class="nav-link logout p-0">
+              <span class="d-none d-sm-inline">Salir</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        
+    </div>
+  </div>
+</nav>

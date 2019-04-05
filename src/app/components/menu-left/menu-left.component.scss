@@ -1,0 +1,19 @@
+.side-navbar {
+    height: 100%;
+}
+nav.side-navbar .sidebar-header a {
+    color: #aaa;
+    font-size: 0.9em;
+    i {
+        margin-right: 0;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: #3eb1c8;
+    }
+}
