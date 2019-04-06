@@ -30,7 +30,9 @@ export class EmployeeService {
         let json: string = JSON.stringify(user_to_login);
         let params = json;
 
-        let headers = new HttpHeaders({'Content-Type':'application/json'});        
+        let headers = new HttpHeaders({
+            'Content-Type':'application/json'
+        });        
 
         return this._http.post(this.url + 'login', params, { headers: headers }).pipe(map((res: Response) => res));            
     }

@@ -26,4 +26,25 @@ export class FunctionsServices {
         }
     }
 
+    getRole() {
+        let identity = localStorage.getItem('identity');
+        let identityJson = JSON.parse(identity);        
+        return identityJson.role;
+    }
+
+    getToken() {
+        return localStorage.getItem('token');
+    }
+
+    checkRoleAdmin() {
+        let identity = localStorage.getItem('identity');
+        let identityJson = JSON.parse(identity);  
+        
+        if(identityJson.role === "ROLE_ADMIN") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

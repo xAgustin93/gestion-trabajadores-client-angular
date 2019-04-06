@@ -14,20 +14,31 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuLeftComponent } from './components/menu-left/menu-left.component';
 
-import { HomeComponent } from './components/home/home.component';
+import { LoginRegistrationComponent } from './components/login-registration/login-registration.component';
 import { LoginComponent } from './components/login-registration/login/login.component';
 import { RegistrationComponent } from './components/login-registration/registration/registration.component';
-import { LoginRegistrationComponent } from './components/login-registration/login-registration.component';
+
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdsComponent } from './components/dashboard/ads/ads.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
+import { EmployeesComponent } from './components/dashboard/employees/employees.component';
+import { ProposalsComponent } from './components/dashboard/proposals/proposals.component';
+import { UserSettingsComponent } from './components/dashboard/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegistrationComponent,
+    LoginRegistrationComponent,
+    DashboardComponent,
+    AdsComponent,
     HeaderComponent,
     MenuLeftComponent,
     HomeComponent,
-    LoginComponent,
-    RegistrationComponent,
-    LoginRegistrationComponent
+    EmployeesComponent,
+    ProposalsComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,

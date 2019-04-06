@@ -51,33 +51,37 @@ export class LoginComponent implements OnInit {
 
     this._employeeService.loginEmployee(this.employee).subscribe(
       response => {
-        // console.log('Response: ', response['employee']);
-        
+                
         this.identity = response['employee'];
-        console.log(this.identity._id);
 
         if(!this.identity._id){
           this._toastrService.error('Los datos del usuario son incorrectos.')
         } else {
-          // Crear elemento en el local Storage para tener al usuario en sesion
-          localStorage.setItem('identity', JSON.stringify(this.identity));
-          
-          // Conseguir el token para enviarselo a cada peticion http
-          this._employeeService.loginEmployee(this.employee, 'true').subscribe(
-            response => {
-              this.token = response['token'];              
-              if(this.token.length <= 0){
+
+          if(this.identity.active === false){
+            this._toastrService.error('EL usuario esta desactivado, hable con el administrador.')
+          } else {
+            // Crear elemento en el local Storage para tener al usuario en sesion
+            localStorage.setItem('identity', JSON.stringify(this.identity));
+            
+            // Conseguir el token para enviarselo a cada peticion http
+            this._employeeService.loginEmployee(this.employee, 'true').subscribe(
+              response => {
+                this.token = response['token'];              
+                if(this.token.length <= 0){
+                  this._toastrService.error('Los datos del usuario son incorrectos.')
+                } else {
+                  // Creamos el elemento en localStorage para tener el TOKEN disponible.
+                  localStorage.setItem('token', this.token);
+                  this._functionsServices.checkLoginPageLogin();
+                }
+              },
+              error => {
                 this._toastrService.error('Los datos del usuario son incorrectos.')
-              } else {
-                // Creamos el elemento en localStorage para tener el TOKEN disponible.
-                localStorage.setItem('token', this.token);
-                this._functionsServices.checkLoginPageLogin();
               }
-            },
-            error => {
-              this._toastrService.error('Los datos del usuario son incorrectos.')
-            }
-          );
+            );
+          }
+
         }
       },
       error => {

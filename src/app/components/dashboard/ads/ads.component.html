@@ -1,0 +1,62 @@
+<div class="page-header">
+    <!-- <div class="container-fluid">
+        <h2 class="no-margin-bottom">{{title}}</h2>
+    </div> -->
+    <div class="row">
+        <div class="col-6">
+            <h2 class="no-margin-bottom">{{title}}</h2>{{roleUser}}
+        </div>
+        <div class="col-6 text-right" *ngIf="roleAdmin">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAd">
+                Nuevo Anuncio
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="ads">
+    <div class="ads-list">
+        <div class="row ad-item" *ngFor="let ad of ads">
+            <div class="col-12 ad-item__header">
+                <span class="title-ad">
+                    <h3>{{ad.title}}</h3>
+                </span>
+                <span class="actions" *ngIf="roleAdmin">
+                    <button><i class="fas fa-trash" (click)="deleteAd(ad._id)"></i></button>
+                </span>
+            </div>
+            <div class="col-12 ad-item__content">
+                <p>{{ad.description}}</p>
+            </div>
+            <div class="col-12 ad-item__date pb-2">
+                Publicado el {{formatDate(ad.date)}}
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addAd" tabindex="-1" role="dialog" aria-labelledby="add-ad" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add-ad">Nuevo Anuncio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #adAddForm="ngForm" (ngSubmit)="addAd(adAddForm)">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="ad-title" placeholder="Titulo" name="title" [(ngModel)]="ad.title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="ad-description" rows="5" placeholder="Que quieres comunicar..." name="description" [(ngModel)]="ad.description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
