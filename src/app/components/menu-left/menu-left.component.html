@@ -13,22 +13,22 @@
     <ul class="list-unstyled sidebar-menu">
         <li routerLinkActive="active">
           <a [routerLink]="['/ads']">
-            <i class="fas fa-tachometer-alt"></i> Anuncios
+            <fa-icon [icon]="faNewspaper" class="pr-2"></fa-icon> Anuncios
           </a>
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/user-settings']">
-            <i class="fas fa-tachometer-alt"></i> Configuracion
+            <fa-icon [icon]="faCogs" class="pr-2"></fa-icon> Configuracion
           </a>
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/proposals']">
-            <i class="fas fa-tachometer-alt"></i> Propuestas
+            <fa-icon [icon]="faLightbulb" class="pr-2"></fa-icon> Propuestas
           </a>
         </li>
         <li routerLinkActive="active">
           <a [routerLink]="['/check']">
-            <i class="fas fa-tachometer-alt"></i> Check-In & Check-Out
+            <fa-icon [icon]="faHourglass" class="pr-2"></fa-icon> Check-In & Check-Out
           </a>
         </li>
     </ul>
@@ -37,7 +37,7 @@
     <ul class="list-unstyled sidebar-menu" *ngIf="identity.role == 'ROLE_ADMIN'">
         <li routerLinkActive="active">
           <a [routerLink]="['/employees']">
-            <i class="fas fa-tachometer-alt"></i> Empleados
+            <fa-icon [icon]="faUsers" class="pr-2"></fa-icon> Empleados
           </a>
         </li>
     </ul>

@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +48,7 @@ import { UserSettingsComponent } from './components/dashboard/user-settings/user
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot()
   ],
   providers: [],

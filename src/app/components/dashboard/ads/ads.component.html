@@ -22,7 +22,7 @@
                     <h3>{{ad.title}}</h3>
                 </span>
                 <span class="actions" *ngIf="roleAdmin">
-                    <button><i class="fas fa-trash" (click)="deleteAd(ad._id)"></i></button>
+                    <button><fa-icon [icon]="faTrash"></fa-icon></button>
                 </span>
             </div>
             <div class="col-12 ad-item__content">

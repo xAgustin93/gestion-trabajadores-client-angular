@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 
 import { FunctionsServices } from '../../services/functions.service';
 
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,7 @@ import { FunctionsServices } from '../../services/functions.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public faSignOutAlt = faSignOutAlt;
 
   constructor(
     private _functionsServices: FunctionsServices,

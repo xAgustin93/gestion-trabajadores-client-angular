@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 
+// FontAwesome Icons
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+
 // Models
 import { Ad } from '../../../models/ad';
 
@@ -25,6 +29,8 @@ export class AdsComponent implements OnInit {
   public ads: Ad[];
   public ad: Ad;
 
+  public faTrash = faTrash;
+
   
   constructor(
     private _functionsServices: FunctionsServices,
@@ -39,8 +45,6 @@ export class AdsComponent implements OnInit {
     this.ad = new Ad('', '', '', '');
 
     this.getAds();
-
-    console.log(moment());
   }
 
   addAd(adAddForm){
@@ -75,7 +79,6 @@ export class AdsComponent implements OnInit {
     this._adServices.getAds(token).subscribe(
       response => {
         this.ads = response['ads'];
-        console.log(this.ads);
       }
     )
   }
