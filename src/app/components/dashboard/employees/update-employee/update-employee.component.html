@@ -1,0 +1,94 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="no-margin-bottom" *ngIf="employee">Editar {{employee.name}} {{employee.lastname}}</h2>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-block">
+  <div class="row container-item">
+    <div class="col-8 offset-2 container-item__content">
+
+      <form class="mt-4 mb-4 employee-update-form" #updateEmployeeForm="ngForm" (ngSubmit)="updateEmployee(updateEmployeeForm)" *ngIf="employee">
+        <div class="form-row user-data">
+          <span class="title-section">Informacion del Empleado</span>
+          <div class="form-group col-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre" name="name" [(ngModel)]="employee.name" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="lastname">Apellidos</label>
+            <input type="text" class="form-control" placeholder="Apellidos" name="lastname" [(ngModel)]="employee.lastname" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="name">DNI</label>
+            <input type="text" class="form-control" placeholder="DNI" name="dni" [(ngModel)]="employee.dni" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="name">Email</label>
+            <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="employee.email" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="name">Contraseña</label>
+            <input type="password" class="form-control" placeholder="Contraseña" name="passsword" [(ngModel)]="password">
+          </div>
+          <div class="form-group col-6">
+            <label for="name">Repetir Contraseña</label>
+            <input type="password" class="form-control" placeholder="Contraseña" name="passsword-repeat" [(ngModel)]="passwordRepeat">
+          </div>
+          <div class="form-group col-12">
+            <label for="role">Tipo de usuario</label>
+            <div class="form-group">
+              <select class="form-control" name="role" [(ngModel)]="employee.role" required>
+                <option value="">Seleciona un rol para le usuario...</option>
+                <option value="ROLE_ADMIN">Administrador</option>
+                <option value="ROLE_EMPLOYEE">Trabajador</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row contract-data">
+          <span class="title-section">Tipo de Contrato</span>
+          <div class="form-group col-12">
+            <label for="name">Tipo de Contrato</label>
+            <select class="form-control" name="type-contract" [(ngModel)]="employee.type_contract" (change)="typeContractChange()" required>
+              <option value="">Seleciona un tipo de contrato...</option>
+              <option value="indefinite">Indefinido</option>
+              <option value="temporary">Temporal</option>
+              <option value="practices">Practicas</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="name">Inicio de contrato</label>
+            <input type="date" class="form-control" placeholder="Inicio del contrato" name="contract-start" [(ngModel)]="employee.start_contract" required>
+          </div>
+          <div class="form-group col-6" *ngIf="employee.type_contract !== 'indefinite'">
+            <label for="lastname">Fin de contrato</label>
+            <input type="date" class="form-control" placeholder="Fin del contrato" name="contract-end" [(ngModel)]="employee.end_contract" required>
+          </div>
+        </div>
+        <div class="form-row bank-data">
+          <span class="title-section">Informacion del Banco</span>
+          <div class="form-group col-6">
+            <label for="name">Nombre del banco</label>
+            <input type="text" class="form-control" placeholder="Nombre" name="back-name" [value]="employee.bank_name" disabled>
+          </div>
+          <div class="form-group col-6">
+            <label for="lastname">Titular</label>
+            <input type="text" class="form-control" placeholder="Apellidos" name="bank-holder" [value]="employee.back_holder" disabled>
+          </div>
+          <div class="form-group col-12">
+            <label for="name">Numero de cuenta</label>
+            <input type="text" class="form-control" placeholder="Nombre" name="bank-number" [value]="employee.back_number" disabled>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Actualizar Datos</button>
+      </form>
+
+    </div>
+  </div>
+</div>

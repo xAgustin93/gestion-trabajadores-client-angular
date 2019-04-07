@@ -26,6 +26,7 @@ import { HomeComponent } from './components/dashboard/home/home.component';
 import { EmployeesComponent } from './components/dashboard/employees/employees.component';
 import { ProposalsComponent } from './components/dashboard/proposals/proposals.component';
 import { UserSettingsComponent } from './components/dashboard/user-settings/user-settings.component';
+import { UpdateEmployeeComponent } from './components/dashboard/employees/update-employee/update-employee.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserSettingsComponent } from './components/dashboard/user-settings/user
     HomeComponent,
     EmployeesComponent,
     ProposalsComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    UpdateEmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ export class UserSettingsComponent implements OnInit {
 
   public employee: any;
 
+  public password: String;
+  public passwordRepeat: String;
+
   constructor(
     private _functionsServices: FunctionsServices,
     private _employeeService: EmployeeService,
@@ -45,20 +48,32 @@ export class UserSettingsComponent implements OnInit {
   }
 
   updateEmployee(updateEmployeeForm) {
-    if(!updateEmployeeForm.valid) {
-      this._toastrService.warning('Rellena todos los campos de las secciónes [Informacion del Empleado] [Informacion del Banco] porfavor');
-    } else {
-      const token = this._functionsServices.getToken();
-      this._employeeService.updateEmployee(this.employee, token).subscribe(
-        response => {
-          const employee = response['employee'];
-          this._toastrService.success('Los datos se han actualizado correctamente');
-          document.getElementById('employee-name').innerHTML = employee.name + ' ' + employee.lastname;
 
-          localStorage.setItem('identity', JSON.stringify(this.employee));
-        }
-      );
+    if(this.password === this.passwordRepeat) {
+
+      if(this.password) {
+        this.employee.password = this.password;
+      }
+
+      if(!updateEmployeeForm.valid) {
+        this._toastrService.warning('Rellena todos los campos de las secciónes [Informacion del Empleado] [Informacion del Banco] porfavor');
+      } else {
+        const token = this._functionsServices.getToken();
+        this._employeeService.updateEmployee(this.employee, token).subscribe(
+          response => {
+            const employee = response['employee'];
+            this._toastrService.success('Los datos se han actualizado correctamente');
+            document.getElementById('employee-name').innerHTML = employee.name + ' ' + employee.lastname;
+
+            localStorage.setItem('identity', JSON.stringify(this.employee));
+          }
+        );
+      }
+
+    } else {
+      this._toastrService.warning('Las contraseñas no son iguales');
     }
+
   }
 
   formatDate(date) {

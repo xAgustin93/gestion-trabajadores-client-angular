@@ -31,6 +31,14 @@
                     <label for="name">Email</label>
                     <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="employee.email" required>
                   </div>
+                  <div class="form-group col-6">
+                    <label for="name">Contraseña</label>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="passsword" [(ngModel)]="password">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name">Repetir Contraseña</label>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="passsword-repeat" [(ngModel)]="passwordRepeat">
+                  </div>
                 </div>
                 <div class="form-row contract-data">
                   <span class="title-section">Tipo de Contrato</span>

@@ -9,6 +9,7 @@ import { UserSettingsComponent } from './components/dashboard/user-settings/user
 import { ProposalsComponent } from './components/dashboard/proposals/proposals.component';
 import { EmployeesComponent } from './components/dashboard/employees/employees.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
+import { UpdateEmployeeComponent } from './components/dashboard/employees/update-employee/update-employee.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'user-settings', component: UserSettingsComponent },
       { path: 'proposals', component: ProposalsComponent },
       { path: 'employees', component: EmployeesComponent },
+      { path: 'employee/:id', component: UpdateEmployeeComponent },
     ]
   },
   { path: '**', redirectTo: '' },

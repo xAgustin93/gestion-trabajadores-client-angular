@@ -57,4 +57,28 @@ export class EmployeeService {
         return this._http.put(this.url + 'update-employee-by-id', params, {headers: headers}).pipe(map((res: Response) => res));
     }
 
+    getEmployees(token) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        return this._http.get(this.url + 'get-employees', {headers: headers}).pipe(map((res: Response) => res));
+    }
+
+    createEmployee(employee, token) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        return this._http.post(this.url + 'create-employee', employee, {headers: headers}).pipe(map((res: Response) => res));
+    }
+
+    deleteEmployee(employeeId, token) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        return this._http.delete(this.url + 'delete-employee/' + employeeId, {headers: headers}).pipe(map((res: Response) => res));
+    }
+
 }

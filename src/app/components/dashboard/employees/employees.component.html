@@ -1,3 +1,169 @@
-<p>
-  employees works!
-</p>
+<div class="page-header">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="no-margin-bottom">{{title}}</h2>
+    </div>
+    <div class="col-6 text-right" *ngIf="roleAdmin">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEmployee">
+        Nuevo Empleado
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-block">
+  <div class="row container-item">
+    <div class="col-12 container-item__content">
+
+        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="active-employees-tab" data-toggle="pill" href="#active-employees" role="tab" aria-controls="active-employees" aria-selected="true">Empleaods Activos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="disabled-employees-tab" data-toggle="pill" href="#disabled-employees" role="tab" aria-controls="disabled-employees" aria-selected="false">Empleados Desactivados</a>
+          </li>
+        </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="container-block">
+  <div class="row container-item">
+    <div class="col-12 container-item__content">
+
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="active-employees" role="tabpanel" aria-labelledby="active-employees-tab">
+              <ul class="list-group list-group-flush" *ngIf="employees">
+                <div class="alert alert-success m-0" role="alert" *ngIf="employeesActiveCount === 0">
+                  No tienes ningun empleado.
+                </div>
+                <ng-container *ngFor="let employee of employees">
+                  <li class="list-group-item"  *ngIf="employee.active">
+                    {{employee.name}} {{employee.lastname}}
+                    <button (click)="disableEmployee(employee)"><fa-icon [icon]="faTimes"></fa-icon></button>
+                    <button (click)="deleteEmployeePrepared(employee)" data-toggle="modal" data-target="#deleteEmployee"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                    <button routerLink="/employee/{{employee._id}}"><fa-icon [icon]="faEdit"></fa-icon></button>
+                  </li>
+                </ng-container>
+              </ul>
+          </div>
+          <div class="tab-pane fade" id="disabled-employees" role="tabpanel" aria-labelledby="disabled-employees-tab">
+            <ul class="list-group list-group-flush" *ngIf="employees">
+              <div class="alert alert-success m-0" role="alert" *ngIf="employeesDisabledCount === 0">
+                No hay empleados por activar.
+              </div>
+              <ng-container *ngFor="let employee of employees">
+                <li class="list-group-item"  *ngIf="!employee.active">
+                  {{employee.name}} {{employee.lastname}}
+                  <button (click)="activateEmployee(employee)"><fa-icon [icon]="faCheck"></fa-icon></button>
+                  <button (click)="deleteEmployeePrepared(employee)" data-toggle="modal" data-target="#deleteEmployee"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                  <button routerLink="/employee/{{employee._id}}"><fa-icon [icon]="faEdit"></fa-icon></button>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Create Employee -->
+<div class="modal fade" id="newEmployee" tabindex="-1" role="dialog" aria-labelledby="newEmployee" aria-hidden="true" *ngIf="roleAdmin">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuevo Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <form class="mt-4 mb-4 create-employee-form" #createEmployeeForm="ngForm" (ngSubmit)="createEmployee(createEmployeeForm)">
+
+          <div class="form-row user-data">
+            <span class="title-section">Informacion del Empleado</span>
+            <div class="form-group col-6">
+              <label for="name">Nombre</label>
+              <input type="text" class="form-control" placeholder="Nombre" name="name" [(ngModel)]="employee.name" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="lastname">Apellidos</label>
+              <input type="text" class="form-control" placeholder="Apellidos" name="lastname" [(ngModel)]="employee.lastname" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="dni">DNI</label>
+              <input type="text" class="form-control" placeholder="DNI" name="dni" [(ngModel)]="employee.dni" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="employee.email" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" placeholder="Contraseña" name="password" [(ngModel)]="password" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="password-repeat">Repetir Contraseá</label>
+              <input type="password" class="form-control" placeholder="Repetir Contraseña" name="password-repeat" [(ngModel)]="passwordRepeat" required>
+            </div>
+            <div class="form-group col-12">
+              <label for="role">Tipo de usuario</label>
+              <div class="form-group">
+                <select class="form-control" name="role" [(ngModel)]="employee.role" required>
+                  <option value="">Seleciona un rol para le usuario...</option>
+                  <option value="ROLE_ADMIN">Administrador</option>
+                  <option value="ROLE_EMPLOYEE">Trabajador</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-row contract-data">
+            <span class="title-section">Tipo de Contrato</span>
+            <div class="form-group col-12">
+              <label for="name">Tipo de Contrato</label>
+              <select class="form-control" name="type-contract" [(ngModel)]="employee.type_contract" (change)="typeContractChange()" required>
+                <option value="">Seleciona un tipo de contrato...</option>
+                <option value="indefinite">Indefinido</option>
+                <option value="temporary">Temporal</option>
+                <option value="practices">Practicas</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="name">Inicio de contrato</label>
+              <input type="date" class="form-control" placeholder="Inicio del contrato" name="contract-start" [(ngModel)]="employee.start_contract" required>
+            </div>
+            <div class="form-group col-6" *ngIf="employee.type_contract !== 'indefinite'">
+              <label for="lastname">Fin de contrato</label>
+              <input type="date" class="form-control" placeholder="Fin del contrato" name="contract-end" [(ngModel)]="employee.end_contract" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Crear Empleado</button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmation Delete Employee -->
+<div class="modal fade" id="deleteEmployee" tabindex="-1" role="dialog" aria-labelledby="deleteEmployee" aria-hidden="true" *ngIf="employeeDelete">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="deleteEmployee">¿Eliminar a {{employeeDelete.name}} {{employeeDelete.lastname}}?</h5>
+      </div>
+      <div class="modal-body text-center">
+        <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" (click)="deleteEmployee(employeeDelete._id)">Eliminar</button>
+        <button type="button" class="btn btn-primary ml-2" data-dismiss="modal">Cerrar Ventana</button>
+      </div>
+    </div>
+  </div>
+</div>

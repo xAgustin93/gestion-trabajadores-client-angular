@@ -1,23 +1,4 @@
-.container-item {
-    .container-item__content {
-        padding: 0;
-
-        .list-group-item button {
-            float: right;
-            background-color: transparent;
-            border: 0;
-
-            &:hover {
-                color: #3eb1c8;
-            }
-        }
-    }
-}
-
-
-
-.create-employee-form,
-.update-employee-form {
+.employee-update-form {
 
     .user-data,
     .contract-data,
