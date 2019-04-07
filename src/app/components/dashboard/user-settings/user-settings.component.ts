@@ -54,6 +54,8 @@ export class UserSettingsComponent implements OnInit {
           const employee = response['employee'];
           this._toastrService.success('Los datos se han actualizado correctamente');
           document.getElementById('employee-name').innerHTML = employee.name + ' ' + employee.lastname;
+
+          localStorage.setItem('identity', JSON.stringify(this.employee));
         }
       );
     }

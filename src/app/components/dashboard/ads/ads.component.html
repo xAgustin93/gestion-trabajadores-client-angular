@@ -18,7 +18,7 @@
                 <span class="title-ad">
                     <h3>{{ad.title}}</h3>
                 </span>
-                <span class="actions" *ngIf="roleAdmin">
+                <span class="actions" *ngIf="roleAdmin" (click)="deleteAd(ad._id)">
                     <button><fa-icon [icon]="faTrash"></fa-icon></button>
                 </span>
             </div>
