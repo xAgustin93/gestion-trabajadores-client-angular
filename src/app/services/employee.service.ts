@@ -8,17 +8,11 @@ import { GLOBAL } from './global';
 @Injectable()
 export class EmployeeService {
     private url: String;
-    private identity;
-    private identityJson;
-    private token;
 
     constructor(
         private _http: HttpClient
         ) {
         this.url = GLOBAL.url;
-        // this.identity = localStorage.getItem('identity');
-        // this.identityJson = JSON.parse(this.identity);
-        // this.token = localStorage.getItem('token');
     }
 
     loginEmployee(user_to_login, gethash = null) {
@@ -27,21 +21,40 @@ export class EmployeeService {
             user_to_login.gethash = gethash;
         }
 
-        let json: string = JSON.stringify(user_to_login);
-        let params = json;
+        const json: string = JSON.stringify(user_to_login);
+        const params = json;
 
-        let headers = new HttpHeaders({
-            'Content-Type':'application/json'
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
         });        
 
         return this._http.post(this.url + 'login', params, { headers: headers }).pipe(map((res: Response) => res));            
     }
 
     registrationEmployee(employee){;
-        let headers = new HttpHeaders({
-            'Content-Type':'application/json'
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
         });
         return this._http.post(this.url + 'registration-employee', employee, {headers: headers}).pipe(map((res: Response) => res));
+    }
+
+    getEmployeeById(employeeId, token) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'aplication/json',
+            'Authorization': token
+        });
+        return this._http.get(this.url + 'get-employee-by-id/' + employeeId, {headers: headers}).pipe(map((res: Response) => res));
+    }
+
+    updateEmployee(employee, token) {
+        const json: string = JSON.stringify(employee);
+        const params = json;
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        return this._http.put(this.url + 'update-employee-by-id', params, {headers: headers}).pipe(map((res: Response) => res));
     }
 
 }

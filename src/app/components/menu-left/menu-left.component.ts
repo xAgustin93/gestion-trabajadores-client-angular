@@ -5,13 +5,18 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { faHourglass } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
+// Services
+import { FunctionsServices } from '../../services/functions.service';
 
 
 
 @Component({
   selector: 'app-menu-left',
   templateUrl: './menu-left.component.html',
-  styleUrls: ['./menu-left.component.scss']
+  styleUrls: ['./menu-left.component.scss'],
+  providers: [FunctionsServices]
 })
 export class MenuLeftComponent implements OnInit {
 
@@ -24,11 +29,14 @@ export class MenuLeftComponent implements OnInit {
   public faLightbulb = faLightbulb;
   public faHourglass = faHourglass;
   public faUsers = faUsers;
+  public faHome = faHome;
 
-  constructor() { }
+  constructor(
+    private _functionsServices: FunctionsServices
+  ) { }
 
   ngOnInit() {
-    this.identity = JSON.parse(localStorage.getItem('identity'));
+    this.identity = JSON.parse(this._functionsServices.getIdentity());
   }
 
 }

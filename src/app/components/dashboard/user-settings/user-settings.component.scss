@@ -1,0 +1,19 @@
+.user-settings-form {
+
+    .user-data,
+    .contract-data,
+    .bank-data {
+        position: relative;
+        border: 1px solid #e2e2e2 !important;
+        padding: 30px 10px 10px 10px;
+        margin: 30px 0;
+
+        .title-section {
+            position: absolute;
+            top: -14px;
+            background: #fff;
+            padding: 0 15px;
+        }
+    }
+
+}

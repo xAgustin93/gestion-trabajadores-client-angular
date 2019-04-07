@@ -8,6 +8,7 @@ import { AdsComponent } from './components/dashboard/ads/ads.component';
 import { UserSettingsComponent } from './components/dashboard/user-settings/user-settings.component';
 import { ProposalsComponent } from './components/dashboard/proposals/proposals.component';
 import { EmployeesComponent } from './components/dashboard/employees/employees.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', component: HomeComponent },
       { path: 'ads', component: AdsComponent },
       { path: 'user-settings', component: UserSettingsComponent },
       { path: 'proposals', component: ProposalsComponent },

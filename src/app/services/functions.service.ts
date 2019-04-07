@@ -36,6 +36,10 @@ export class FunctionsServices {
         return localStorage.getItem('token');
     }
 
+    getIdentity() {
+        return localStorage.getItem('identity');
+    }
+
     checkRoleAdmin() {
         let identity = localStorage.getItem('identity');
         let identityJson = JSON.parse(identity);  

@@ -1,3 +1,71 @@
-<p>
-  user-settings works!
-</p>
+<div class="page-header">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="no-margin-bottom">{{title}}</h2>{{roleUser}}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-block">
+    <div class="row container-item">
+        <div class="col-8 offset-2 container-item__content">
+
+            <form class="mt-4 mb-4 user-settings-form" #updateEmployeeForm="ngForm" (ngSubmit)="updateEmployee(updateEmployeeForm)" *ngIf="employee">
+                <div class="form-row user-data">
+                  <span class="title-section">Informacion del Empleado</span>
+                  <div class="form-group col-6">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" name="name" [(ngModel)]="employee.name" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="lastname">Apellidos</label>
+                    <input type="text" class="form-control" placeholder="Apellidos" name="lastname" [(ngModel)]="employee.lastname" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name">DNI</label>
+                    <input type="text" class="form-control" placeholder="DNI" name="dni" [(ngModel)]="employee.dni" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name">Email</label>
+                    <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="employee.email" required>
+                  </div>
+                </div>
+                <div class="form-row contract-data">
+                  <span class="title-section">Tipo de Contrato</span>
+                  <div class="form-group col-12">
+                    <label for="name">Tipo de Contrato</label>
+                    <input type="text" class="form-control" placeholder="Tipo de Contrato" name="type-contract" [value]="employee.type_contract" disabled>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name">Inicio de contrato</label>
+                    <input type="text" class="form-control" placeholder="Inicio del contrato" name="contract-start" [value]="formatDate(employee.start_contract)" disabled>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="lastname">Fin de contrato</label>
+                    <input type="text" class="form-control" placeholder="Fin del contrato" name="contract-end" [value]="formatDate(employee.end_contract)" disabled>
+                  </div>
+                </div>
+                <div class="form-row bank-data">
+                  <span class="title-section">Informacion del Banco</span>
+                  <div class="form-group col-6">
+                    <label for="name">Nombre del banco</label>
+                    <input type="text" class="form-control" placeholder="Nombre" name="back-name" [(ngModel)]="employee.bank_name" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="lastname">Titular</label>
+                    <input type="text" class="form-control" placeholder="Apellidos" name="bank-holder" [(ngModel)]="employee.back_holder" required>
+                  </div>
+                  <div class="form-group col-12">
+                    <label for="name">Numero de cuenta</label>
+                    <input type="text" class="form-control" placeholder="Nombre" name="bank-number" [(ngModel)]="employee.back_number" required>
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-success">Actualizar Datos</button>
+            </form>
+
+        </div>
+    </div>
+</div>

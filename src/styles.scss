@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+.container-block {
+    .container-item {
+        background: #fff;
+        margin: 15px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
+
+        .container-item__header,
+        .container-item__content,
+        .container-item__footer {
+            padding: 15px;;
+        }
+    }
+}
