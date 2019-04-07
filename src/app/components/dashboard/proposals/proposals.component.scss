@@ -1,0 +1,16 @@
+.container-block {
+    .container-item__footer {
+        button {
+            background-color: transparent;
+            border: 0;
+
+            .like {
+                color: green;
+            }
+            .dislike {
+                color: #f00;
+            }
+        }
+    }
+    
+}

@@ -1,3 +1,155 @@
-<p>
-  proposals works!
-</p>
+<div class="page-header">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="no-margin-bottom">{{title}}</h2>
+    </div>
+    <div class="col-6 text-right">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProposal">
+        Nueva Propuesta
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container-block" *ngIf="roleEmployee === 'ROLE_ADMIN'">
+  <div class="row container-item">
+    <div class="col-12 container-item__content">
+
+      <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="active-proposals-tab" data-toggle="pill" href="#active-proposals" role="tab" aria-controls="active-proposals" aria-selected="true">Propuestas Activas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="disabled-proposals-tab" data-toggle="pill" href="#disabled-proposals" role="tab" aria-controls="disabled-proposals" aria-selected="false">Propuestas Pendinetes</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-block">
+    <div class="row container-item">
+      <div class="col-12 container-item__content">
+  
+          
+  
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="active-proposals" role="tabpanel" aria-labelledby="active-proposals-tab">
+      <ul class="list-group list-group-flush" *ngIf="proposals">
+
+          <div class="container-block">
+            <ng-container *ngFor="let proposal of proposals">
+            <div class="row container-item" *ngIf="proposal.active === true">
+                <div class="col-12 container-item__header">
+                  <h3>{{proposal.title}}</h3>
+                </div>
+                <div class="col-12 container-item__content">
+                  {{proposal.description}}
+                </div>
+                <div class="col-12 container-item__footer">
+                  <button class="mr-1"><fa-icon [icon]="faThumbsUp" class="like"></fa-icon></button> 0
+                  <button class="ml-4 mr-1"><fa-icon [icon]="faThumbsDown" class="dislike"></fa-icon></button> 0
+                </div>
+            </div>
+            </ng-container>
+          </div>
+
+      </ul>
+  </div>
+  <div class="tab-pane fade" id="disabled-proposals" role="tabpanel" aria-labelledby="disabled-proposals-tab" *ngIf="roleEmployee === 'ROLE_ADMIN'">
+    <ul class="list-group list-group-flush" *ngIf="proposals">
+      
+      <div class="container-block">
+        <ng-container *ngFor="let proposal of proposals">
+        <div class="row container-item" *ngIf="proposal.active === false">
+            <div class="col-12 container-item__header">
+              <h3>{{proposal.title}}</h3>
+            </div>
+            <div class="col-12 container-item__content">
+              {{proposal.description}}
+            </div>
+            <div class="col-12 container-item__footer">
+              <button (click)="acceptProposal(proposal)" class="mr-2"><fa-icon [icon]="faCheck" class="like"></fa-icon></button>
+              <button class="ml-2"><fa-icon [icon]="faTimes" class="dislike"></fa-icon></button>
+            </div>
+        </div>
+        </ng-container>
+      </div>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-block">
+  <div class="row container-item" *ngFor="let proposal of proposals">
+    <div class="col-12 container-item__header">
+      <h3>{{proposal.title}}</h3>
+    </div>
+    <div class="col-12 container-item__content">
+      {{proposal.description}}
+    </div>
+    <div class="col-12 container-item__footer">
+      <button class="mr-1"><fa-icon [icon]="faThumbsUp" class="like"></fa-icon></button> 0
+      <button class="ml-4 mr-1"><fa-icon [icon]="faThumbsDown" class="dislike"></fa-icon></button> 0
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<!-- Modal Add Proposal -->
+<div class="modal fade" id="addProposal" tabindex="-1" role="dialog" aria-labelledby="addProposal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProposal">Nueva Propuesta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #addProposalForm="ngForm" (ngSubmit)="addProposal(addProposalForm)">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Titulo" name="title" [(ngModel)]="proposal.title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" placeholder="Que quieres comunicar..." name="description" [(ngModel)]="proposal.description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Crear Propuesta</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
