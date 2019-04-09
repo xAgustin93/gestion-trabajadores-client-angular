@@ -38,4 +38,12 @@ export class ProposalService {
         });
         return this._http.put(this.url + 'update-proposal', proposal, {headers: headers}).pipe(map((res: Response) => res));
     }
+
+    deleteProposal(proposalId, token) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        return this._http.delete(this.url + 'delete-proposal/' + proposalId, {headers: headers}).pipe(map((res: Response) => res));
+    }
 }

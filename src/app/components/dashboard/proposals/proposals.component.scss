@@ -1,13 +1,35 @@
 .container-block {
+    .container-item__header {
+        background: #e3e3e3;
+        padding: 15px;
+
+        h3 {
+            margin: 0;
+        }
+
+        button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: 0;
+            color: #f00;
+        }
+    }
+    .container-item__content.menu {
+        padding: 0;
+    }
     .container-item__footer {
         button {
             background-color: transparent;
             border: 0;
 
-            .like {
+            .like,
+            .accept {
                 color: green;
             }
-            .dislike {
+            .dislike,
+            .delete {
                 color: #f00;
             }
         }

@@ -14,6 +14,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 declare var $: any;
 
@@ -29,6 +30,7 @@ export class ProposalsComponent implements OnInit {
   public roleEmployee: String;
   public proposals: Proposal;
   public proposal: Proposal;
+  public delProposal: Proposal;
 
 
   // Icons
@@ -36,6 +38,7 @@ export class ProposalsComponent implements OnInit {
   public faThumbsDown = faThumbsDown;
   public faCheck = faCheck;
   public faTimes = faTimes;
+  public faTrashAlt = faTrashAlt;
 
   constructor(
     private _functionsServices: FunctionsServices,
@@ -82,23 +85,53 @@ export class ProposalsComponent implements OnInit {
 
     this._proposalService.updateProposal(proposalUpdate, token).subscribe(
       response => {
-        console.log(response);
-      },
-      error => {
-        console.log(error);
+        this._toastrService.success('Propuesta aceptada');
       }
-    )
+    );
   }
 
-  deleteProposal() {
-
+  deleteProposalPrepared(proposal) {
+    this.delProposal = proposal;
   }
 
-  likeProposal() {
+  deleteProposal(proposalId) {
+    const token = this._functionsServices.getToken();
 
+    this._proposalService.deleteProposal(proposalId, token).subscribe(
+      response => {
+        this._toastrService.warning('Propuesta eliminada.');
+        this.getProposals();
+      }
+    );
   }
 
-  dislikeProposal() {
+  voteProposal(proposal, typeVote) {   
+    let proposalUpdate = proposal;
+    let employeeId = JSON.parse(this._functionsServices.getIdentity())._id;
+    let checkLike = proposalUpdate.employee_actions.includes(employeeId);
+
+    if(checkLike) {
+      this._toastrService.warning('Solo puedes votar 1 vez');
+    } else {
+      proposalUpdate.employee_actions.push( employeeId );
+
+      if(typeVote === "like"){
+        proposalUpdate.like ++;
+      } else {
+        proposalUpdate.dislike ++;
+      }
+
+      const token = this._functionsServices.getToken();
+
+      this._proposalService.updateProposal(proposalUpdate, token).subscribe(
+        response => {
+          this._toastrService.success('Votacion aceptada.');
+        }
+      );
+    }
+  }
+
+  dislikeProposal(proposalUpdate) {
 
   }
 

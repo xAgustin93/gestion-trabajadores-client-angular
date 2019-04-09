@@ -7,6 +7,6 @@ export class Proposal {
         public like: Number,
         public disLike: Number,
         public active: Boolean,
-        public user_actions: any
+        public user_actions: any[]
     ) {}
 }
