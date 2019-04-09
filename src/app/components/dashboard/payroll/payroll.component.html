@@ -1,0 +1,56 @@
+<div class="page-header">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="no-margin-bottom">{{title}}</h2>
+    </div>
+    <div class="col-6 text-right" *ngIf="roleEmployee === 'ROLE_ADMIN' && employees">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPayroll">
+        Subir Nomina
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal Add Payroll -->
+<div class="modal fade" id="addPayroll" tabindex="-1" role="dialog" aria-labelledby="addPayroll" aria-hidden="true"  *ngIf="roleEmployee === 'ROLE_ADMIN'">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addPayroll">Subir Nomina</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form #addPayrollForm="ngForm" (ngSubmit)="addPayroll(addPayrollForm)">
+              <div class="form-group">
+                <select class="form-control" name="employee" [(ngModel)]="payroll.employee" required>
+                  <option value="">Selecciona un empleado...</option>
+                  <option *ngFor="let employee of employees" [value]="employee._id">{{employee.name}} {{employee.lastname}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                  <input type="date" class="form-control" name="date" [(ngModel)]="payroll.date" required>
+              </div>
+              <div class="form-group">
+                  <input type="file" class="form-control" name="file" [(ngModel)]="payroll.file" (change)="changePayrollFile($event)" required>
+              </div>
+              
+              <button type="submit" class="btn btn-success">Subir Nomina</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

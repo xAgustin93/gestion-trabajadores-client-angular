@@ -10,6 +10,7 @@ import { ProposalsComponent } from './components/dashboard/proposals/proposals.c
 import { EmployeesComponent } from './components/dashboard/employees/employees.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
 import { UpdateEmployeeComponent } from './components/dashboard/employees/update-employee/update-employee.component';
+import { PayrollComponent } from './components/dashboard/payroll/payroll.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,10 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '', component: HomeComponent },
       { path: 'ads', component: AdsComponent },
-      { path: 'user-settings', component: UserSettingsComponent },
       { path: 'proposals', component: ProposalsComponent },
+      // { path: 'check-in-check-out', component: ProposalsComponent },
+      { path: 'payroll', component: PayrollComponent },
+      { path: 'user-settings', component: UserSettingsComponent },
       { path: 'employees', component: EmployeesComponent },
       { path: 'employee/:id', component: UpdateEmployeeComponent },
     ]

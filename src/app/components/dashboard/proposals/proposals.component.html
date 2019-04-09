@@ -3,7 +3,7 @@
     <div class="col-6">
       <h2 class="no-margin-bottom">{{title}}</h2>
     </div>
-    <div class="col-6 text-right">
+    <div class="col-6 text-right" *ngIf="roleEmployee === 'ROLE_ADMIN'">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProposal">
         Nueva Propuesta
       </button>
@@ -95,7 +95,7 @@
 
 
 <!-- Modal Add Proposal -->
-<div class="modal fade" id="addProposal" tabindex="-1" role="dialog" aria-labelledby="addProposal" aria-hidden="true">
+<div class="modal fade" id="addProposal" tabindex="-1" role="dialog" aria-labelledby="addProposal" aria-hidden="true"  *ngIf="roleEmployee === 'ROLE_ADMIN'">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
