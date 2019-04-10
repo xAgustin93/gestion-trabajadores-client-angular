@@ -1,0 +1,19 @@
+.container-block {
+    .container-item {
+        .container-item__header {
+            h3 {
+                text-transform: capitalize;
+                margin: 0;
+            }
+        }
+
+        .container-item__actions {
+            padding: 15px;
+            text-align: right;
+            
+            a {
+                margin-right: 15px;
+            }
+        }
+    }
+}

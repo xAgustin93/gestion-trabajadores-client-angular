@@ -48,7 +48,7 @@ export class ProposalsComponent implements OnInit {
 
   ngOnInit() {
     this.title = 'Propuestas';
-    this.proposal = new Proposal('', '', '', '', 0, 0, false, '');
+    this.proposal = new Proposal('', '', '', '', 0, 0, false, null);
     this.roleEmployee = this._functionsServices.getRole();
 
     this.getProposals();
@@ -68,9 +68,9 @@ export class ProposalsComponent implements OnInit {
     const token = this._functionsServices.getToken();
 
     this._proposalService.createPorposal(this.proposal, token).subscribe(
-      repsonse => {
+      response => {
         this.getProposals();
-        this.proposal = new Proposal('', '', '', '', 0, 0, false, '');
+        this.proposal = new Proposal('', '', '', '', 0, 0, false, null);
         $('#addProposal').modal('hide');
         this._toastrService.success('Propuesta añadida correctamente');
       }

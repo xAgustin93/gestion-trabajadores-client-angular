@@ -13,6 +13,33 @@
 
 
 
+<div class="container-block">
+    <div class="row container-item">
+        <div class="col-12 container-item__header">
+          <h5>Seleciona un Empleado</h5>
+        
+          <select class="form-control" (change)="changeSelectEmployee($event)" [(ngModel)]="employeeId" required>
+            <option *ngFor="let employee of employees" [value]="employee._id">{{employee.name}} {{employee.lastname}}</option>
+          </select>
+      </div>
+    </div>
+</div>
+
+<div class="container-block">
+  <ng-container *ngFor="let payroll of payrolls">
+  <div class="row container-item">
+      <div class="col-6 container-item__header">
+        <h3>{{formatDate(payroll.date)}}</h3>
+      </div>
+      <div class="col-6 container-item__actions">
+        <a [attr.href]="getUrlPayroll(payroll.file)" target="_blank" class="btn btn-success download">Descargar</a>
+        <button (click)="deletePayrollPrepared(payroll)" data-toggle="modal" data-target="#deletePayroll" class="btn btn-danger delete">Eliminar</button>
+      </div>
+  </div>
+  </ng-container>
+</div>
+
+
 
 
 
@@ -45,11 +72,27 @@
                   <input type="date" class="form-control" name="date" [(ngModel)]="payroll.date" required>
               </div>
               <div class="form-group">
-                  <input type="file" class="form-control" name="file" [(ngModel)]="payroll.file" (change)="changePayrollFile($event)" required>
+                  <input type="file" class="form-control" id="form-file" name="file" (change)="changePayrollFile($event)" required>
               </div>
               
               <button type="submit" class="btn btn-success">Subir Nomina</button>
           </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Confirmation Delete Employee -->
+<div class="modal fade" id="deletePayroll" tabindex="-1" role="dialog" aria-labelledby="deletePayroll" aria-hidden="true" *ngIf="payrolls">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="deletePayroll">¿Eliminar a ?</h5>
+      </div>
+      <div class="modal-body text-center">
+        <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" (click)="deletePayroll()">Eliminar</button>
+        <button type="button" class="btn btn-primary ml-2" data-dismiss="modal">Cerrar Ventana</button>
       </div>
     </div>
   </div>

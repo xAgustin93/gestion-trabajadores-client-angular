@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { GLOBAL } from './global';
+
 @Injectable()
 export class FunctionsServices {
 
@@ -49,6 +51,10 @@ export class FunctionsServices {
         } else {
             return false;
         }
+    }
+
+    getUrlApi() {
+        return GLOBAL.url;
     }
 
 }

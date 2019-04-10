@@ -80,5 +80,4 @@ export class EmployeeService {
         });
         return this._http.delete(this.url + 'delete-employee/' + employeeId, {headers: headers}).pipe(map((res: Response) => res));
     }
-
 }
