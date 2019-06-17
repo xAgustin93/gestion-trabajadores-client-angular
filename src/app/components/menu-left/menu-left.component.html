@@ -1,54 +1,54 @@
 <nav class="side-navbar">
-    <!-- Sidebar Header-->
-    <div class="sidebar-header d-flex align-items-center">
-      <div class="title">
-        <h1 class="h4" id="employee-name">
-          {{identity.name}}
-          {{identity.lastname}}
-        </h1>
-      </div>
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="title">
+      <h1 class="h4" id="employee-name">
+        {{identity.name}}
+        {{identity.lastname}}
+      </h1>
     </div>
-    
-    <span class="heading">Menu</span>
-    <ul class="list-unstyled sidebar-menu">
-        <li>
-          <a [routerLink]="['/']">
-            <fa-icon [icon]="faHome" class="pr-2"></fa-icon> Home
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/ads']">
-            <fa-icon [icon]="faNewspaper" class="pr-2"></fa-icon> Anuncios
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/proposals']">
-            <fa-icon [icon]="faLightbulb" class="pr-2"></fa-icon> Propuestas
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/check']">
-            <fa-icon [icon]="faHourglass" class="pr-2"></fa-icon> Check-In & Check-Out
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/payroll/' + identity._id]">
-            <fa-icon [icon]="faFileAlt" class="pr-2"></fa-icon> Nominas
-          </a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/user-settings']">
-            <fa-icon [icon]="faCogs" class="pr-2"></fa-icon> Configuracion
-          </a>
-        </li>
-    </ul>
-    
-    <span class="heading" *ngIf="identity.role == 'ROLE_ADMIN'">Menu Admin</span>
-    <ul class="list-unstyled sidebar-menu" *ngIf="identity.role == 'ROLE_ADMIN'">
-        <li routerLinkActive="active">
-          <a [routerLink]="['/employees']">
-            <fa-icon [icon]="faUsers" class="pr-2"></fa-icon> Empleados
-          </a>
-        </li>
-    </ul>
-  </nav>
+  </div>
+  
+  <span class="heading">Menu</span>
+  <ul class="list-unstyled sidebar-menu">
+      <li>
+        <a [routerLink]="['/']">
+          <fa-icon [icon]="faHome" class="pr-2"></fa-icon> Home
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/ads']">
+          <fa-icon [icon]="faNewspaper" class="pr-2"></fa-icon> Anuncios
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/proposals']">
+          <fa-icon [icon]="faLightbulb" class="pr-2"></fa-icon> Propuestas
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/fichador']">
+          <fa-icon [icon]="faHourglass" class="pr-2"></fa-icon> Check-In & Check-Out
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/payroll/' + identity._id]">
+          <fa-icon [icon]="faFileAlt" class="pr-2"></fa-icon> Nominas
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/user-settings']">
+          <fa-icon [icon]="faCogs" class="pr-2"></fa-icon> Configuracion
+        </a>
+      </li>
+  </ul>
+  
+  <span class="heading" *ngIf="identity.role == 'ROLE_ADMIN'">Menu Admin</span>
+  <ul class="list-unstyled sidebar-menu" *ngIf="identity.role == 'ROLE_ADMIN'">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/employees']">
+          <fa-icon [icon]="faUsers" class="pr-2"></fa-icon> Empleados
+        </a>
+      </li>
+  </ul>
+</nav>

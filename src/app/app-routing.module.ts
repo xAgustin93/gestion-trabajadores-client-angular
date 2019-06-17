@@ -11,6 +11,7 @@ import { EmployeesComponent } from './components/dashboard/employees/employees.c
 import { HomeComponent } from './components/dashboard/home/home.component';
 import { UpdateEmployeeComponent } from './components/dashboard/employees/update-employee/update-employee.component';
 import { PayrollComponent } from './components/dashboard/payroll/payroll.component';
+import { FichadorComponent } from './components/dashboard/fichador/fichador.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'ads', component: AdsComponent },
       { path: 'proposals', component: ProposalsComponent },
-      // { path: 'check-in-check-out', component: ProposalsComponent },
+      { path: 'fichador', component: FichadorComponent },
       { path: 'payroll/:id', component: PayrollComponent },
       { path: 'user-settings', component: UserSettingsComponent },
       { path: 'employees', component: EmployeesComponent },

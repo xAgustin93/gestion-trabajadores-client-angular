@@ -28,6 +28,7 @@ import { ProposalsComponent } from './components/dashboard/proposals/proposals.c
 import { UserSettingsComponent } from './components/dashboard/user-settings/user-settings.component';
 import { UpdateEmployeeComponent } from './components/dashboard/employees/update-employee/update-employee.component';
 import { PayrollComponent } from './components/dashboard/payroll/payroll.component';
+import { FichadorComponent } from './components/dashboard/fichador/fichador.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PayrollComponent } from './components/dashboard/payroll/payroll.compone
     ProposalsComponent,
     UserSettingsComponent,
     UpdateEmployeeComponent,
-    PayrollComponent
+    PayrollComponent,
+    FichadorComponent
   ],
   imports: [
     BrowserModule,

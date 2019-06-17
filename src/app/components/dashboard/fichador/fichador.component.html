@@ -1,0 +1,38 @@
+<div class="page-header">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="no-margin-bottom">{{title}}</h2>
+    </div>
+
+    <div class="col-6 text-right" *ngIf="!lastFichaje">
+        <button type="button" class="btn btn-success" (click)="checkIn()">
+          Iniciar
+        </button>
+    </div>
+
+    <div class="col-6 text-right" *ngIf="lastFichaje">
+      <button type="button" class="btn btn-success" (click)="checkIn()" *ngIf="lastFichaje.check_out">
+        Iniciar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="checkOut()" *ngIf="lastFichaje.check_in">
+        Parar
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container-block" *ngIf="fichajes">
+  <div class="row container-item">
+    <div class="container-item__header col-12 p-0">
+      <ul class="list-group list-group-flush" *ngFor="let fichaje of fichajes">
+        <li class="list-group-item text-success" *ngIf="fichaje.check_in">Hora de entrada: {{dateTransform(fichaje.date)}}</li>
+        <li class="list-group-item text-danger" *ngIf="fichaje.check_out">Hora de salida: {{dateTransform(fichaje.date)}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
